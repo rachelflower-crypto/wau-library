@@ -178,8 +178,8 @@ function libraryPage(issue, base, allIssues) {
 </article></li>`).join('\n');
   const past = allIssues.length > 1 ? `<section class="room grain" aria-labelledby="past-h"><div class="wrap">
 <h2 id="past-h" class="room-h">Earlier Dispatches</h2>
-<p class="room-sub">Every issue stays on the shelf.</p>
-<div class="past">${allIssues.map((i) => `<a href="/dispatch/${i.slug}/library/"${i.slug === issue.slug ? ' aria-current="page"' : ''}>${esc(i.label)} · ${esc(i.month)}</a>`).join('')}</div>
+<p class="room-sub">Every issue stays on the shelf, bound. Pull one out and read it in one go.</p>
+<div class="past">${allIssues.slice().reverse().filter((i) => i.slug !== issue.slug).map((i) => `<div class="vol-spine"><a class="vs-book" href="/dispatch/${i.slug}/bound/"><span class="vs-no">No. ${i.number}</span><span class="vs-t">${esc(i.theme || i.month)}</span><span class="vs-m">${esc(i.month)}</span></a><a class="vs-lib" href="/dispatch/${i.slug}/library/">or wander that month’s Library</a></div>`).join('')}</div>
 </div></section>` : '';
 
   return head({ title: `The Library · ${issue.label} · We Are Unbecoming`, description: 'Stories, opinions, confessions and curious discoveries. Please open the books.', url: `${base}library/` }) + `<div class="lib">
@@ -206,6 +206,7 @@ ${lt.margin ? `<span class="anno anno-1" aria-hidden="true">${esc(lt.margin)}</s
 ${books.map((b) => `<li><a href="${base}${b.slug}/"><span class="n">${esc(b.call)}</span><span class="t">${esc(b.column)}: ${esc(b.title)}</span></a></li>`).join('\n')}
 </ol>
 ${issue.theme ? `<p style="margin:14px 0 0;font-size:14px;color:#5E4E3B">Theme: ${esc(issue.theme)}</p>` : ''}
+<p style="margin:14px 0 0"><a class="vol-link" href="${base}bound/">Rather read it in one go? The bound edition →</a></p>
 </div>
 </aside>
 </div>
@@ -332,20 +333,96 @@ ${past}
 ${footer(base)}`;
 }
 
-function bookPage(issue, base, b, mode = 'full') {
-  const byId = Object.fromEntries(issue.books.map((x) => [x.id, x]));
+function bookBody(issue, base, b, mode, to) {
   const dir = path.join(ROOT, 'content/issues', issue.slug, 'books');
   const full = fill(fs.readFileSync(path.join(dir, `${b.slug}.html`), 'utf8'));
-  let body = full;
-  if (mode === 'preview') {
-    const own = path.join(dir, `${b.slug}.preview.html`);
-    const to = `${base}${b.slug}/`;
-    if (fs.existsSync(own)) body = fill(fs.readFileSync(own, 'utf8')).replace('{{gateBlock}}', gateBlock(to));
-    else {
-      if (!full.includes('<!--more-->')) throw new Error(`${b.slug}: needs <!--more--> (or a .preview.html) to show a free opening`);
-      body = full.split('<!--more-->')[0] + `<div class="arow"><div>${gateBlock(to)}</div></div>`;
-    }
-  }
+  if (mode !== 'preview') return { full, body: full };
+  const own = path.join(dir, `${b.slug}.preview.html`);
+  if (fs.existsSync(own)) return { full, body: fill(fs.readFileSync(own, 'utf8')).replace('{{gateBlock}}', gateBlock(to)) };
+  if (!full.includes('<!--more-->')) throw new Error(`${b.slug}: needs <!--more--> (or a .preview.html) to show a free opening`);
+  return { full, body: full.split('<!--more-->')[0] + `<div class="arow"><div>${gateBlock(to)}</div></div>` };
+}
+
+// ---------- the bound edition: the whole Dispatch, read in one go ----------
+function boundPage(issue, base, level) {
+  const to = `${base}bound/`;
+  const modeFor = (b) => (b.access === 'correspondents' && level !== 'correspondents' ? 'preview' : 'full');
+  const lt = issue.letter;
+  const c = issue.cabinet;
+  const books = issue.books.map((b) => {
+    const isLex = b.layout === 'lexicon';
+    const { full, body } = bookBody(issue, base, b, modeFor(b), to);
+    const html = body.replace(/<h1(\s)/g, '<h2$1').replace(/<\/h1>/g, '</h2>');
+    return `<section class="vol-book" id="${b.slug}" aria-labelledby="h-${b.slug}">
+<header class="wrap ahead">
+<div class="aspine v-${b.variant}" aria-hidden="true"><span class="bands"><i></i><i></i></span><span class="sp-lbl">${esc(b.spine.replace(/\n/g, ' '))}</span><span class="bands"><i></i><i></i></span></div>
+<div class="atitle">
+<span class="eyebrow">${esc(b.call)} · ${esc(b.column)} · ${esc(b.shelfName)}</span>
+<h2 id="h-${b.slug}">${esc(isLex ? `The Lexicon: ${b.title}` : b.title)}</h2>
+<p class="dek">${esc(b.dek)}</p>
+<div class="byline"><span>${esc(b.byline)}</span>${isLex ? '' : `<span class="dot" aria-hidden="true">·</span><span>${readMins(full)} minute read</span>`}</div>
+</div>
+</header>
+${isLex ? `<div class="wrap">${html}</div>` : `<div class="wrap abody">${html}${modeFor(b) === 'full' ? `<div class="arow"><div><p class="sign">${esc(b.signature || 'The Librarian')}</p></div></div>` : ''}</div>`}
+</section>`;
+  }).join('\n');
+  const cabinet = c && c.slug ? `<section class="vol-book" id="the-curiosity-cabinet" aria-label="The Curiosity Cabinet">
+<div class="wrap">
+<span class="eyebrow">The Curiosity Cabinet</span>
+${level === 'correspondents'
+    ? `<article class="casefile" aria-labelledby="cf-h" style="margin-top:20px">${fill(fs.readFileSync(path.join(ROOT, 'content/issues', issue.slug, c.file), 'utf8'))}</article>`
+    : `<div class="arow"><div><p class="type" style="font-size:16px;line-height:1.6;margin-top:20px"><b style="letter-spacing:.08em">${esc(c.teaserTitle.toUpperCase())}</b><br>${esc(c.teaser)}</p>${gateBlock(to)}</div></div>`}
+</div></section>` : '';
+  const contents = [`<li><a href="#vol-letter"><span class="n">·</span><span>From the desk of the Librarian: ${esc(lt.title)}</span></a></li>`]
+    .concat(issue.books.map((b) => `<li><a href="#${b.slug}"><span class="n">${esc(b.call)}</span><span>${esc(b.column)}: <i>${esc(b.title)}</i>${modeFor(b) === 'preview' ? ' <em class="vol-op">(opening)</em>' : ''}</span></a></li>`))
+    .concat(cabinet ? [`<li><a href="#the-curiosity-cabinet"><span class="n">·</span><span>The Curiosity Cabinet: <i>${esc(c.teaserTitle)}</i>${level === 'correspondents' ? '' : ' <em class="vol-op">(for the Correspondents)</em>'}</span></a></li>`] : [])
+    .join('\n');
+  return head({ title: `${issue.label} · The bound edition · We Are Unbecoming`, description: `The whole of ${issue.label}, to read in one go.`, url: to, bodyClass: 'vol-body' }) + `${nav(issue, base, false)}
+<main class="vol" id="read">
+<section class="vol-cover dark grain">
+<div class="wrap">
+<img src="${IMG}wau-stacked-dark.png" alt="We Are Unbecoming" class="vol-logo">
+<p class="eyebrow" style="color:#F3EADB">${esc(issue.label)} · ${esc(issue.month)}</p>
+<h1><span class="the">The</span>Dispatch</h1>
+${issue.theme ? `<p class="vol-theme">${esc(issue.theme)}</p>` : ''}
+<p class="vol-ed">The bound edition${level === 'correspondents' ? ' · the Correspondents’ copy' : ' · the Curious copy'}</p>
+<div class="vol-tools"><button class="btn btn-brass" type="button" data-print>Print or save as PDF</button><a class="btn btn-line vol-light" href="${base}library/">Back to the Library</a></div>
+<img class="vol-seal" src="${IMG}seal.png" alt="">
+</div>
+</section>
+<section class="vol-contents wrap" aria-labelledby="contents-h">
+<h2 id="contents-h" class="eyebrow muted">Contents</h2>
+<ol class="vol-toc">${contents}</ol>
+</section>
+<section class="vol-book" id="vol-letter" aria-labelledby="vol-letter-h">
+<div class="wrap abody">
+<div class="arow"><div>
+<span class="eyebrow muted">From the desk of the Librarian</span>
+<h2 id="vol-letter-h" class="vol-h">${esc(lt.title)}</h2>
+${lt.body.map((x) => `<p>${x}</p>`).join('\n')}
+<p class="sign">The Librarian</p>
+${lt.ps ? `<p><i>${esc(lt.ps)}</i></p>` : ''}
+</div></div></div>
+</section>
+${books}
+${cabinet}
+<section class="vol-book vol-end" aria-label="The Margins">
+<div class="wrap" style="max-width:640px">
+<span class="eyebrow muted">The Margins</span>
+<div class="margins" style="margin-top:18px">
+<p class="hand" style="font-size:30px;line-height:1.1;color:#2A211D">${esc(issue.margins.quote)}</p>
+<p class="hand" style="font-size:24px;color:#8B2E2A;text-align:right;margin-top:10px">${esc(issue.margins.note)} — L.</p>
+</div>
+<p class="vol-colophon">${esc(issue.label)} of the Dispatch was written and bound in the Library of ${esc(site.societyName)}, ${esc(issue.month)}. Published by ${esc(site.legal.operator)}, trading as ${esc(site.legal.tradingAs)}.</p>
+</div>
+</section>
+</main>
+${footer(base)}`;
+}
+
+function bookPage(issue, base, b, mode = 'full') {
+  const byId = Object.fromEntries(issue.books.map((x) => [x.id, x]));
+  const { full, body } = bookBody(issue, base, b, mode, `${base}${b.slug}/`);
   const url = `${site.siteUrl}${base}${b.slug}/`;
   const mins = readMins(full);
   const sig = b.signature || 'The Librarian';
@@ -513,6 +590,8 @@ for (const issue of issues) {
     if (b.access === 'correspondents') vault[to] = { correspondents: bookPage(issue, base, b, 'full'), ...(b.freeOpening ? { curious: bookPage(issue, base, b, 'preview') } : {}) };
     else vault[to] = { curious: bookPage(issue, base, b, 'full') };
   }
+  write(`dispatch/${issue.slug}/bound/index.html`, doorPage(issue, base, { to: `${base}bound/`, need: 'curious', title: 'The bound edition', what: `${issue.label} in one go` }));
+  vault[`${base}bound/`] = { curious: boundPage(issue, base, 'curious'), correspondents: boundPage(issue, base, 'correspondents') };
   if (issue.cabinet && issue.cabinet.slug) {
     const to = `${base}${issue.cabinet.slug}/`;
     write(`dispatch/${issue.slug}/${issue.cabinet.slug}/index.html`, doorPage(issue, base, { to, need: 'curious', title: 'The Curiosity Cabinet', what: issue.cabinet.teaserTitle }));
