@@ -1,0 +1,236 @@
+{
+  "number": 1,
+  "slug": "001",
+  "label": "Dispatch No. 1",
+  "month": "December 2026",
+  "theme": "Say Her Name",
+  "letter": {
+    "title": "Welcome to the Library",
+    "body": [
+      "Dear Reader,",
+      "Do make yourself comfortable.",
+      "You’ll find stories, opinions, confessions, curious discoveries and the occasional <span class=\"u-red\">rather mischievous invitation</span>. Please feel free to open anything that interests you. The books have been quiet for quite long enough.",
+      "This is the first Dispatch, so a word on how things work here. Each month I shelve a handful of new books. Some will make you laugh somewhere you shouldn’t. One may make you cross, which is healthy. None of them will tell you how to become a better version of yourself. You are quite good enough as a first edition.",
+      "This month’s theme is <i>Say Her Name</i>. You’ll meet a woman who has held a wreath for a hundred and thirty-nine years, and another whose library carries her husband’s name. Say theirs. Then say your own, out loud, somewhere it isn’t expected.",
+      "Next time you’re tempted to doomscroll, come here instead. Your thumb deserves better."
+    ],
+    "ps": "P.S. If a book seems to be watching you, it probably is. Carry on.",
+    "margin": "Her Indoors. You’ll see."
+  },
+  "entranceNote": "Please open the books. They’re becoming quite unbearable.",
+  "secretShelf": "You found the Secret Shelf. It’s empty this month: the books are plotting something for No. 2.",
+  "margins": {
+    "quote": "Overheard in the Reading Room: “I’m not difficult. I’m thorough.”",
+    "note": "Filed under: things to say at work."
+  },
+  "cabinet": {
+    "teaserTitle": "From the History · Case File No. 001",
+    "teaser": "The library that inspired ours was built by a woman. It bears her husband’s name. The History has been digging. (He’s a man. He’s allowed in by special permission, and we make him do all the graft. He loves it.)",
+    "file": "casefile.html",
+    "slug": "the-curiosity-cabinet",
+    "access": "correspondents"
+  },
+  "shelf": [
+    "end",
+    "d:t3 w3 h4 ov mh",
+    "anbg",
+    "d:t7 w4 h4 gt",
+    "her",
+    "lex",
+    "d:t4 w3 h5 gt",
+    "unh",
+    "long",
+    "d:t3 w3 h4 ov",
+    "wei",
+    "d:t2 w3 h3 gt mh",
+    "fut",
+    "reserved",
+    "end"
+  ],
+  "books": [
+    {
+      "id": "anbg",
+      "slug": "its-bang-out-of-order",
+      "call": "D1·01",
+      "variant": "anbg",
+      "spine": "IT'S BANG\nOUT OF\nORDER",
+      "emblem": "!",
+      "column": "It's Bang Out of Order",
+      "shelfName": "The Outrage Shelf",
+      "title": "Two Truths and a Lie, and Other Crimes Against Adults",
+      "dek": "A thoroughly good rant about office icebreakers. Please assume the position: arms folded.",
+      "byline": "By the Librarian",
+      "whisper": "This one has opinions.",
+      "principles": [
+        "Freedom",
+        "Playfulness"
+      ],
+      "access": "curious",
+      "member": false,
+      "related": [
+        "her",
+        "long"
+      ],
+      "freeOpening": false
+    },
+    {
+      "id": "her",
+      "slug": "her-indoors",
+      "call": "D1·02",
+      "variant": "her",
+      "darkhead": true,
+      "spine": "HER\nINDOORS",
+      "emblem": "",
+      "column": "Her Indoors",
+      "shelfName": "The Reading Nook",
+      "title": "Who are you behind closed doors?",
+      "dek": "When nobody’s watching and you no longer have to perform for the world. Anonymous confessions, gently edited by the Librarian.",
+      "byline": "Collected by the Librarian",
+      "whisper": "Best not read this in a meeting.",
+      "principles": [
+        "Permission",
+        "Playfulness"
+      ],
+      "access": "curious",
+      "member": false,
+      "related": [
+        "anbg",
+        "unh"
+      ],
+      "freeOpening": false
+    },
+    {
+      "id": "lex",
+      "slug": "the-lexicon",
+      "call": "D1·03",
+      "variant": "lex",
+      "layout": "lexicon",
+      "spine": "THE\nLEXICON",
+      "emblem": "§",
+      "column": "The Lexicon",
+      "shelfName": "The Reference Desk",
+      "title": "Persevere",
+      "dek": "Each month the Correspondents receive one word from the Unbecoming Lexicon, with its four invitations. This month’s word arrived in rather a determined mood.",
+      "byline": "Annotated by the Librarian",
+      "whisper": "Are you quite sure you want to know?",
+      "principles": [
+        "Curiosity",
+        "Creativity"
+      ],
+      "access": "correspondents",
+      "member": true,
+      "related": [
+        "long",
+        "anbg"
+      ],
+      "freeOpening": true
+    },
+    {
+      "id": "unh",
+      "slug": "the-unheard",
+      "call": "D1·04",
+      "variant": "unh",
+      "spine": "THE\nUNHEARD",
+      "emblem": "⁂",
+      "column": "The Unheard",
+      "shelfName": "The Alcove",
+      "title": "The Woman in the Statue",
+      "dek": "A short story. She has stood in the square since 1887, holding a wreath for someone else.",
+      "byline": "Fiction by the Librarian",
+      "whisper": "Listen. Someone has been waiting.",
+      "principles": [
+        "Connection",
+        "Recovery"
+      ],
+      "access": "curious",
+      "member": false,
+      "related": [
+        "long",
+        "anbg"
+      ],
+      "freeOpening": false
+    },
+    {
+      "id": "long",
+      "slug": "the-long-read",
+      "call": "D1·05",
+      "variant": "long",
+      "spine": "THE\nLONG\nREAD",
+      "emblem": "❦",
+      "column": "The Long Read",
+      "shelfName": "The Reading Room",
+      "title": "Refounding",
+      "dek": "Making peace with the women we’ve been. Making space for the ones we shall become.",
+      "byline": "By the Librarian",
+      "whisper": "Put the kettle on first.",
+      "principles": [
+        "Recovery",
+        "Permission"
+      ],
+      "access": "correspondents",
+      "member": false,
+      "image": {
+        "src": "reading-stand.jpg",
+        "alt": "A book open on a wooden reading stand beside a lamp and a leather armchair",
+        "caption": "A book left open, mid-sentence.",
+        "credit": "The Librarian"
+      },
+      "related": [
+        "fut",
+        "lex"
+      ],
+      "freeOpening": true
+    },
+    {
+      "id": "fut",
+      "slug": "future-you",
+      "call": "D1·06",
+      "variant": "fut",
+      "spine": "FUTURE\nYOU",
+      "emblem": "…",
+      "column": "Future You",
+      "shelfName": "The Window Seat",
+      "title": "A Letter from Further On",
+      "dek": "Written by the woman you’re becoming, and posted back to you. She has kept it short. She knows you’re busy.",
+      "byline": "Delivered by the Librarian",
+      "signature": "You (later)",
+      "whisper": "Not written yet. That's rather the point.",
+      "principles": [
+        "Creativity",
+        "Freedom"
+      ],
+      "access": "curious",
+      "member": false,
+      "related": [
+        "long",
+        "lex"
+      ],
+      "freeOpening": false
+    },
+    {
+      "id": "wei",
+      "slug": "what-even-is",
+      "call": "D1·07",
+      "variant": "wei",
+      "spine": "WHAT\nEVEN\nIS…?",
+      "emblem": "?",
+      "column": "What Even Is…?",
+      "shelfName": "The Enquiry Desk",
+      "title": "What Even Is Laughter?",
+      "dek": "An investigation into the peculiar noise that escapes us when something tickles our insides.",
+      "byline": "Investigated by the Librarian",
+      "whisper": "No question too obvious.",
+      "principles": [
+        "Curiosity",
+        "Playfulness"
+      ],
+      "access": "correspondents",
+      "member": false,
+      "related": [
+        "lex",
+        "fut"
+      ],
+      "freeOpening": true
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+# We Are Unbecoming · The Library
+[build]
+  command = "node build.mjs"
+  publish = "dist"
+  edge_functions = "netlify/edge-functions"
+
+[build.environment]
+  NODE_VERSION = "20"

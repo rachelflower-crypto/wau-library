@@ -1,0 +1,24 @@
+{
+  "siteUrl": "https://library.weareunbecoming.com",
+  "softLaunch": true,
+  "societyName": "We Are Unbecoming",
+  "tagline": "A most improper society",
+  "footerLine": "Come in. You don't have to become anything while you're here.",
+  "links": {
+    "substack": "https://weareunbecoming.substack.com",
+    "substackSubscribe": "https://weareunbecoming.substack.com/subscribe",
+    "company": "https://weareunbecoming.com/jointhesociety",
+    "societySite": "https://weareunbecoming.com",
+    "librarianEmail": "librarian@weareunbecoming.com"
+  },
+  "legal": {
+    "operator": "Carys Edge Limited",
+    "tradingAs": "We Are Unbecoming",
+    "registeredIn": "England and Wales",
+    "companyNumber": "[company number]",
+    "registeredOffice": "[registered office address]",
+    "vatNumber": "[VAT number]",
+    "privacyUrl": "",
+    "termsUrl": ""
+  }
+}
