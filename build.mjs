@@ -411,9 +411,9 @@ function doorPage(issue, base, { to, need, title, what }) {
 <span class="eyebrow muted">${esc(issue.label)} · ${esc(what || 'A door in the Library')}</span>
 <h1>${esc(title)}</h1>
 <p class="lede-d">${corr
-    ? 'This one is kept for the Correspondents. Whisper this month’s password, the one in the Librarian’s paid letter, and the door will open.'
-    : 'The door is closed, but not locked. Whisper this month’s password. You’ll find it in the Librarian’s latest letter on Substack.'}</p>
-<p class="wrong" role="alert" hidden>That isn’t quite it. Check the letter, then try again. (Capital letters don’t matter.)</p>
+    ? 'This one is kept for the Correspondents. Whisper this month’s password, the one in the Librarian’s latest paid letter, and the door will open. It opens every Dispatch on the shelves, old and new.'
+    : 'The door is closed, but not locked. Whisper this month’s password. You’ll find it in the Librarian’s latest letter on Substack. One word opens every Dispatch on the shelves.'}</p>
+<p class="wrong" role="alert" hidden>That isn’t quite it. Check the latest letter (last month’s word has retired), then try again. (Capital letters don’t matter.)</p>
 <form method="post" action="/door" class="door-form">
 <input type="hidden" name="to" value="${esc(to)}">
 <label for="pw">The password</label>
