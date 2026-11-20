@@ -1,0 +1,360 @@
+{
+  "number": 2,
+  "slug": "002",
+  "label": "Dispatch No. 2",
+  "month": "January 2027",
+  "theme": "Fallow",
+  "draft": true,
+  "bodyClass": "d002",
+  "tagline": "The radical possibility of leaving something well alone.",
+  "letter": {
+    "title": "Welcome to Fallow",
+    "lead": "This month tugs on two of the Seven Principles: <b>Recovery</b> and <b>Permission</b>.",
+    "body": [
+      "I have never made a New Year’s resolution.",
+      "I’ve been asked, encouraged and pressurised into doing so, but I always decline.",
+      "Frankly, I’ve always thought the concept of “New Year Resolutions” was bollocks.",
+      "Not because I lack ambition. I’ve got plenty of that, be assured. And not because I don’t believe in change, because I’ve spent much of my life changing things, including myself, constantly.",
+      "But I’ve never understood why the arrival of January should constitute evidence that I need fixing.",
+      "Or why, if I want to change something, I can’t just do so on another day of the year.",
+      "And in England, where the January days are long, cold, grey and dark – why would I choose THIS particular month to eject comforts from my life in an attempt to be “better”.",
+      "Yet every year, without fail, on 1st January we’re invited to begin again.",
+      "New year. New goals. New habits. New body. New business. NEW YOU.",
+      "(The implication being that the old you has somehow failed to meet expectations. Objection, m’lady. I’m perfectly well-rounded and content as I am.)",
+      "So having survived the chaos of December, we arrive in January exhausted, overfed, financially depleted and slightly bewildered, only to be instructed to embark upon an ambitious programme of personal transformation.",
+      "Preferably involving green juice, a gym membership and a journal with gold lettering.",
+      "No, thank you.",
+      "So this January, by order of the Society, we’re doing something different.",
+      "In fact, we’re not doing anything at all. Feck all. Nada. Zilch. Minus zilch, if such a thing is possible. Join me in the Land of the Fallow and the Free, where we investigate the curious art of emptying our baskets and searching for empty space.",
+      "If you’re new here, welcome to We Are Unbecoming. If you’ve been with us since December, welcome back, and well done for surviving the overdose of mince pies.",
+      "Either way, <span class=\"u-red\">welcome to Fallow</span>."
+    ],
+    "ps": "P.S. To our Correspondents in Australia, currently basting gently in the height of summer: bear with us whilst you swan around in your bikinis. The winter in these pages isn’t always the one outside the window, so it still applies to y’all.",
+    "margin": "Feck all. Officially."
+  },
+  "entranceNote": "The books are lying fallow. Do disturb them gently.",
+  "secretShelf": "You found the Secret Shelf. It’s lying fallow this month. Naturally.",
+  "bandLine": "Left alone for a season. Do look closer.",
+  "shelfSub": "Ten books this month. None of them will ask you to improve.",
+  "shelfHint": "Hover, then open. They’ve been resting.",
+  "margins": {
+    "quote": "Overheard in the Reading Room: “Objection, m’lady. I’m perfectly well-rounded and content as I am.”",
+    "note": "Filed under: things to say to January."
+  },
+  "returnSlot": "What will you leave fallow this month? Post it back, if you like. The Librarian reads everything, eventually. (She’s in no hurry. It’s January.)",
+  "cabinet": {
+    "label": "The Curiosity Cabinet · Stop Press",
+    "teaserTitle": "Stop Press · Case File No. 002",
+    "teaser": "Britain’s favourite cooking apple bears a man’s name. It was a girl’s pip. The History has been digging again. (He loves an orchard.)",
+    "file": "casefile.html",
+    "slug": "the-curiosity-cabinet",
+    "access": "correspondents",
+    "image": "etching-graft.svg",
+    "imageClass": "cab-etch",
+    "note": "Same story as last month. Different fruit. For the Correspondents."
+  },
+  "lastPage": {
+    "sub": "Not a resolution. Not an assignment.",
+    "question": "What would you allow to lie fallow if you didn’t have to explain, justify or promise what it might eventually become?",
+    "lines": [
+      "You don’t have to answer it. You could simply let it accompany you for a little while. On a walk. In the bath. On the train. While waiting for the kettle to boil.",
+      "You might find something worth considering. Or you might not."
+    ],
+    "aside": "Either is fine.",
+    "small": "There is no thirty-day plan. No downloadable tracker. No accountability partner. No instruction to reinvent yourself before February.",
+    "finalWord": {
+      "title": "Trust.",
+      "signature": "The Librarian x",
+      "body": [
+        "We spend so much of our lives trying to make things happen.",
+        "Planning. Pushing. Building. Fixing.",
+        "Becoming.",
+        "And sometimes, I accept, those are exactly the things we need to do. Life is life’ing, and we have to get on.",
+        "But I’ve often reflected on what kind of courage it is when we intentionally leave something unfinished.",
+        "To allow a question to remain unanswered, or let a difficult friendship fade away.",
+        "When we stop trying to extract a lesson from every difficult experience, or stop beating ourselves up for our part in it.",
+        "The courage to believe that our worth is not conditional upon our usefulness or our worthiness, especially if we’re looking for it to be validated by others.",
+        "To <i>trust</i> ourselves without needing to know what happens next.",
+        "This is your friendly reminder: fallow ground has already been turned over. It has done its work. It is allowed to lie there.",
+        "So this January, you’re invited not to begin.",
+        "Not to become or do or graft your way to any particular destination or goal.",
+        "Not to make a single promise about the person you’ll be twelve months from now.",
+        "You are allowed to be here. Just as you are.",
+        "I’m very glad you’re here. And the books need you, because they’re getting unbearable. The ones as yet unwritten are grumbling, but I’ve told them – not till February comes. Hold your horses. The Plough is on annual leave until further notice."
+      ]
+    },
+    "next": "<b>Next month’s word:</b> <i>to have and to hold, but it’s not what you think it’ll be.</i>"
+  },
+  "company": {
+    "price": "£49 a month",
+    "note": "Founding rate, rising to £79. Closes 31 January 2027.",
+    "href": "https://www.weareunbecoming.com/thecompany"
+  },
+  "shelf": [
+    "end",
+    "lex",
+    "big",
+    "read",
+    "poem",
+    "listen",
+    "gal",
+    "story",
+    "anbg",
+    "unh",
+    "apple",
+    "end"
+  ],
+  "books": [
+    {
+      "id": "lex",
+      "slug": "the-lexicon",
+      "call": "D2·01",
+      "variant": "lex",
+      "layout": "lexicon",
+      "spine": "THE\nLEXICON",
+      "emblem": "§",
+      "column": "The Lexicon",
+      "shelfName": "The Reference Desk",
+      "title": "Fallow",
+      "dek": "Each month the Correspondents receive one word from the Unbecoming Lexicon, with its four invitations. This month’s word has been turned over, and then, deliberately, left.",
+      "byline": "Annotated by the Librarian",
+      "whisper": "Turned over. Then left.",
+      "principles": [
+        "Curiosity",
+        "Recovery"
+      ],
+      "access": "correspondents",
+      "member": true,
+      "related": [
+        "big",
+        "read"
+      ],
+      "freeOpening": true
+    },
+    {
+      "id": "big",
+      "slug": "the-big-idea",
+      "call": "D2·02",
+      "variant": "big",
+      "spine": "THE\nBIG\nIDEA",
+      "emblem": "❧",
+      "column": "The Big Idea",
+      "shelfName": "The Lectern",
+      "title": "Trust the ground beneath your feet",
+      "dek": "On the peculiar anxiety of doing nothing, and three studies with their small print left in.",
+      "byline": "By the Librarian",
+      "whisper": "Doing nothing, properly.",
+      "principles": [
+        "Recovery",
+        "Permission"
+      ],
+      "access": "correspondents",
+      "member": false,
+      "related": [
+        "unh",
+        "read"
+      ],
+      "freeOpening": true
+    },
+    {
+      "id": "read",
+      "slug": "the-reading-room",
+      "call": "D2·03",
+      "variant": "read",
+      "spine": "THE\nREADING\nROOM",
+      "emblem": "✶",
+      "column": "The Reading Room",
+      "shelfName": "The Reading Room",
+      "title": "Wintering",
+      "dek": "Katherine May on the seasons we don’t choose, and our January book recommendation.",
+      "byline": "Recommended by the Librarian",
+      "whisper": "Best read under a blanket.",
+      "principles": [
+        "Recovery",
+        "Connection"
+      ],
+      "access": "curious",
+      "member": false,
+      "related": [
+        "poem",
+        "big"
+      ],
+      "freeOpening": false
+    },
+    {
+      "id": "poem",
+      "slug": "the-poetry-shelf",
+      "call": "D2·04",
+      "variant": "poem",
+      "spine": "THE\nPOETRY\nSHELF",
+      "emblem": "〰",
+      "column": "The Poetry Shelf",
+      "shelfName": "The Poetry Shelf",
+      "title": "Wild Geese",
+      "dek": "Mary Oliver, and the startling idea that belonging might come before effort.",
+      "byline": "Shelved by the Librarian",
+      "whisper": "You do not have to earn this.",
+      "principles": [
+        "Permission",
+        "Freedom"
+      ],
+      "access": "curious",
+      "member": false,
+      "related": [
+        "listen",
+        "gal"
+      ],
+      "freeOpening": false
+    },
+    {
+      "id": "listen",
+      "slug": "the-listening-room",
+      "call": "D2·05",
+      "variant": "listen",
+      "spine": "THE\nLISTENING\nROOM",
+      "emblem": "♪",
+      "column": "The Listening Room",
+      "shelfName": "The Gramophone Corner",
+      "title": "Fields of Gold",
+      "dek": "Eva Cassidy, and a voice that lay fallow for years before anyone was listening.",
+      "byline": "Played by the Librarian",
+      "whisper": "Turn the lights down first.",
+      "principles": [
+        "Connection",
+        "Creativity"
+      ],
+      "access": "curious",
+      "member": false,
+      "related": [
+        "gal",
+        "read"
+      ],
+      "freeOpening": false
+    },
+    {
+      "id": "gal",
+      "slug": "the-gallery",
+      "call": "D2·06",
+      "variant": "gal",
+      "spine": "THE\nGALLERY",
+      "emblem": "≡",
+      "column": "The Gallery",
+      "shelfName": "The Long Gallery",
+      "title": "The art of almost nothing",
+      "dek": "Agnes Martin’s Morning (1965), seven fallow years, and three minutes of looking.",
+      "byline": "Hung by the Librarian",
+      "whisper": "Look longer.",
+      "principles": [
+        "Curiosity",
+        "Recovery"
+      ],
+      "access": "curious",
+      "member": false,
+      "related": [
+        "story",
+        "lex"
+      ],
+      "freeOpening": false
+    },
+    {
+      "id": "story",
+      "slug": "the-story",
+      "call": "D2·07",
+      "variant": "story",
+      "spine": "THE\nSTORY",
+      "emblem": "⚷",
+      "column": "The Story",
+      "shelfName": "The Window Seat",
+      "title": "The Secret Garden",
+      "dek": "Frances Hodgson Burnett’s locked garden, the rest cure behind it, and what we’d write differently now.",
+      "byline": "Read aloud by the Librarian",
+      "whisper": "The key is under the ivy.",
+      "principles": [
+        "Connection",
+        "Recovery"
+      ],
+      "access": "correspondents",
+      "member": false,
+      "related": [
+        "unh",
+        "apple"
+      ],
+      "freeOpening": true
+    },
+    {
+      "id": "anbg",
+      "slug": "its-bang-out-of-order",
+      "call": "D2·08",
+      "variant": "anbg",
+      "spine": "IT'S BANG\nOUT OF\nORDER",
+      "emblem": "!",
+      "column": "It's Bang Out of Order",
+      "shelfName": "The Outrage Shelf",
+      "title": "The New Year, New You Industrial Complex",
+      "dek": "Blue Monday, Quitter’s Day, and the relentless suggestion that being human is a condition requiring intervention.",
+      "byline": "By the Librarian, arms folded",
+      "whisper": "This one has opinions. Again.",
+      "principles": [
+        "Freedom",
+        "Playfulness"
+      ],
+      "access": "curious",
+      "member": false,
+      "related": [
+        "big",
+        "apple"
+      ],
+      "freeOpening": false
+    },
+    {
+      "id": "unh",
+      "slug": "the-unsaid",
+      "call": "D2·09",
+      "variant": "unh",
+      "spine": "THE\nUNSAID",
+      "emblem": "⁂",
+      "column": "The Unsaid",
+      "shelfName": "The Alcove",
+      "title": "Who gets to stop?",
+      "dek": "What we’re not talking about when we talk about rest.",
+      "byline": "By the Librarian",
+      "whisper": "Who’s carrying the load?",
+      "principles": [
+        "Connection",
+        "Freedom"
+      ],
+      "access": "curious",
+      "member": false,
+      "related": [
+        "story",
+        "anbg"
+      ],
+      "freeOpening": false
+    },
+    {
+      "id": "apple",
+      "slug": "about-apples",
+      "call": "D2·10",
+      "variant": "apple",
+      "spine": "ABOUT\nAPPLES",
+      "emblem": "❦",
+      "column": "About Apples",
+      "shelfName": "The Orchard Shelf",
+      "title": "Ripe, rotten, root",
+      "dek": "Ripe, rotten, root: the whole life of an apple, a crumble that is not for sharing, and a snake eating its own tail.",
+      "byline": "Gathered by the Librarian",
+      "whisper": "Contains crumble. Not shared.",
+      "principles": [
+        "Curiosity",
+        "Playfulness"
+      ],
+      "access": "curious",
+      "member": false,
+      "related": [
+        "story",
+        "lex"
+      ],
+      "freeOpening": false
+    }
+  ]
+}

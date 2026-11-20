@@ -515,3 +515,121 @@ h2.room-h{margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-s
   .sign{break-before:avoid-page}
   a{color:inherit;text-decoration:none}
 }
+
+
+/* ===================================================================
+   Dispatch No. 2 · January 2027 · Fallow
+   New book colours, the Last Page, and a few small components.
+   Shelf sizing rules are scoped to body.d002 so No. 1 is untouched.
+   =================================================================== */
+
+/* new spines on the shelf */
+.b-big{background-color:#5B4636;width:120px;height:342px}
+.b-read{background-color:#46525C;width:110px;height:318px}
+.b-poem{background-color:#66785A;width:96px;height:300px}
+.b-listen{background-color:#B08436;width:110px;height:324px}
+.b-gal{background-color:#E4DCCB;color:#2A211D;width:124px;height:336px}
+.b-story{background-color:#2E4A33;width:112px;height:330px}
+.b-apple{background-color:#9E3326;width:104px;height:306px}
+
+.b-big .lbl,.b-read .lbl,.b-poem .lbl,.b-story .lbl{font-size:14px}
+.b-read .lbl,.b-listen .lbl,.b-poem .lbl{letter-spacing:.04em}
+.b-poem .emb{font-size:24px}
+.b-read .emb{font-size:24px;font-style:normal}
+
+/* the Gallery: pale linen, ink label, hairline grid like a Martin canvas */
+.b-gal{background-image:repeating-linear-gradient(0deg,rgba(42,33,29,.10) 0 1px,transparent 1px 9px),linear-gradient(90deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.08) 7%,rgba(255,255,255,.25) 21%,rgba(0,0,0,0) 55%,rgba(0,0,0,.14) 82%,rgba(0,0,0,.38) 100%),url(img/tex-cloth.jpg);background-size:100% 100%,100% 100%,cover;background-blend-mode:normal,normal,multiply}
+.b-gal .lbl{background-color:#F3EADB;background-image:linear-gradient(180deg,rgba(255,255,255,.3),rgba(131,110,87,.2)),url(img/tex-cloth.jpg);background-blend-mode:normal,multiply;color:#2A211D;border-color:#2A211D}
+.b-gal .gt,.b-gal .emb{background:none;color:#2A211D;filter:none}
+.b-gal .emb{font-style:normal;font-size:26px}
+.b-gal .bands i{border-color:rgba(42,33,29,.5)}
+
+/* the Listening Room: gold cloth, ink label */
+.b-listen .lbl{background-color:#2A211D}
+.b-listen .emb{font-style:normal;font-size:30px}
+
+/* the Story: a little brass key hanging from the top */
+.b-story::after{content:"";position:absolute;top:-6px;left:50%;width:2px;height:40px;margin-left:-1px;background:#B07D3E;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
+.b-story::before{content:"";position:absolute;z-index:2;top:30px;left:50%;width:14px;height:14px;margin-left:-7px;border:3px solid #D9BC7E;border-radius:50%;box-shadow:0 1px 2px rgba(0,0,0,.5)}
+
+/* About Apples: a leaf poking out of the top */
+.b-apple::after{content:"";position:absolute;top:-22px;right:22px;width:30px;height:16px;background:#5E7D3E;border-radius:0 100% 0 100%;transform:rotate(-24deg);box-shadow:inset 0 0 0 1px rgba(0,0,0,.25);transition:transform .4s}
+.b-apple:hover::after,.b-apple:focus-visible::after{transform:rotate(-34deg) translateY(-3px)}
+
+/* the Big Idea: leather */
+.b-big{background-image:linear-gradient(90deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,.18) 7%,rgba(255,236,200,.17) 21%,rgba(255,236,200,.05) 36%,rgba(0,0,0,0) 55%,rgba(0,0,0,.24) 82%,rgba(0,0,0,.62) 100%),linear-gradient(180deg,rgba(0,0,0,.4),rgba(0,0,0,0) 7%,rgba(0,0,0,0) 86%,rgba(0,0,0,.4)),url(img/tex-leather.jpg)}
+.b-big .bands i{background:radial-gradient(circle,rgba(232,207,146,.95) .9px,transparent 1.5px) 0 50%/5px 5px repeat-x,linear-gradient(180deg,rgba(255,240,210,.2),rgba(0,0,0,.35))}
+.b-big .emb{width:100%;padding:6px 0;border-top:1px solid rgba(217,188,126,.85);border-bottom:1px solid rgba(217,188,126,.85);text-align:center;font-style:normal}
+
+@media (max-width:760px){
+ .b-big{width:110px;height:310px}.b-gal{width:110px;height:304px}
+}
+
+
+/* ten books on one shelf: let them slim down on narrower screens */
+.d002 .row-main .book{margin:0 4px}
+@media (min-width:761px) and (max-width:1500px){
+ .d002 .row-main .book{width:clamp(70px,7.3vw,108px)!important}
+ .d002 .row-main .book .lbl{font-size:clamp(10px,.95vw,14px)!important;letter-spacing:.02em!important;padding-left:3px;padding-right:3px}
+ .d002 .row-main .book .emb{font-size:clamp(18px,1.9vw,28px)}
+}
+
+@media (min-width:761px) and (max-width:1080px){
+ .d002 .row-main{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x proximity}
+ .d002 .row-main .whisper{display:none}
+}
+
+/* matching flat spines and article spines */
+.v-big{background-color:#5B4636}.v-read{background-color:#46525C}.v-poem{background-color:#66785A}
+.v-listen{background-color:#B08436}.v-gal{background-color:#E4DCCB}.v-story{background-color:#2E4A33}.v-apple{background-color:#9E3326}
+.v-big .sp-lbl,.v-read .sp-lbl,.v-poem .sp-lbl,.v-listen .sp-lbl,.v-story .sp-lbl,.v-apple .sp-lbl{background:#2A211D;color:#D9BC7E;border-color:#D9BC7E}
+.v-gal .sp-lbl{background:#F3EADB;color:#2A211D;border-color:#2A211D}
+.v-gal .ft,.v-listen .ft{color:#2A211D}
+.aspine.v-big,.flat.v-big{background-image:linear-gradient(90deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,.18) 7%,rgba(255,236,200,.17) 21%,rgba(255,236,200,.05) 36%,rgba(0,0,0,0) 55%,rgba(0,0,0,.24) 82%,rgba(0,0,0,.62) 100%),url(img/tex-leather.jpg)}
+.aspine.v-gal .bands i{border-color:rgba(42,33,29,.6)}
+
+/* the entrance: a little colder for January */
+.d002 .ent-art{filter:grayscale(.45) sepia(.15) brightness(.92)}
+
+/* Rachel's still-to-write notes: pencil boxes, so gaps are obvious in previews */
+.todo{display:block;margin:6px 0 34px;padding:14px 18px 16px;border:1.5px dashed #8B2E2A;background:rgba(139,46,42,.05);font-family:'Caveat',cursive;font-size:23px;line-height:1.2;color:#8B2E2A;transform:rotate(-.4deg)}
+.todo-k{display:block;font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;color:#8B2E2A}
+.lpage .todo{margin:6px 0 10px}
+.cf-body .todo{margin:10px 0 24px}
+
+/* small components */
+.stack{font-size:20px;line-height:1.75!important;font-style:italic}
+.btnrow{margin:6px 0 28px!important}
+.toos{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,2.6vw,34px)!important;line-height:1.35!important;font-style:italic;color:#5E4E3B}
+.toos span{color:#8B2E2A;font-style:normal;font-weight:600}
+.fact .fn{white-space:nowrap}
+.placard{margin:4px 0 34px;padding:22px 24px;background:#F9F4EA;border:1px solid #B07D3E;box-shadow:0 14px 24px -18px rgba(42,33,29,.6);max-width:520px}
+.placard p{margin:0 0 8px!important}
+.placard .type{font-size:13px;letter-spacing:.06em;line-height:1.6;color:#5E4E3B}
+.placard .pl-t{font-family:'Cormorant Garamond',serif;font-size:32px!important;line-height:1.1!important}
+.placard .small{font-size:12px;margin-top:10px!important}
+.fig-inline,.fig-wide{margin:6px 0 30px}
+.fig-inline img,.fig-wide img{display:block;width:100%;height:auto;border:1px solid #B07D3E}
+.fig-inline figcaption,.fig-wide figcaption{margin-top:10px;font-size:16px;font-style:italic;color:#5E4E3B;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.fig-inline .credit,.fig-wide .credit{font-style:normal;font-size:13px}
+.oldapple{position:relative;margin:10px 0 40px;max-width:420px;background:#ECE1CD;padding:12px 12px 14px;border:1px solid #B07D3E;transform:rotate(1.4deg);box-shadow:0 16px 26px -18px rgba(42,33,29,.7)}
+.oldapple img{display:block;width:100%;height:auto;filter:sepia(.2)}
+.oa-mnote{font-size:32px!important;align-self:center!important}
+.oa-note::before{content:"";position:absolute;left:-48px;top:18px;width:42px;border-top:1.5px solid #8B2E2A;transform:rotate(-12deg)}
+@media (max-width:980px){.oa-note{position:static;width:auto;margin-top:12px;transform:rotate(-2deg)}.oa-note::before{display:none}}
+.overheard cite{display:block;margin-top:12px;font-family:'Courier Prime',monospace;font-size:13px;font-style:normal;letter-spacing:.06em;color:#5E4E3B}
+.swatch{display:flex;align-items:center;gap:12px;font-family:'Courier Prime',monospace;font-size:14px;color:#5E4E3B}
+.swatch span{display:inline-block;width:46px;height:24px;background:#A88B5C;border:1px solid #5E4E3B}
+.principles-line{font-size:15px!important;font-style:italic;color:#5E4E3B;margin-top:-6px!important}
+.cab-etch{background:#F9F4EA}
+.cab-etch img{object-fit:contain!important;padding:14px;filter:none!important}
+.cf-etch img{filter:none!important;background:#F9F4EA}
+
+/* the Last Page */
+.carry{max-width:860px;margin:10px auto 56px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.carry-q{margin:6px 0 10px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(32px,3.6vw,50px);line-height:1.12;color:#2A211D;text-wrap:balance}
+.carry-s{margin:0;font-size:20px;line-height:1.6;max-width:640px}
+.carry-small{margin:10px 0 0;font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:.04em;color:#5E4E3B;max-width:560px}
+.paper.final{max-width:760px;margin:0 auto;transform:rotate(-.3deg)}
+.final .next{border-top:1px dashed #836E57;padding-top:14px;margin-top:20px}
+.founding{margin:-4px 0 6px;font-size:15px;font-style:italic;color:#E3C68A}

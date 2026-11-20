@@ -131,12 +131,14 @@ const TOP_ROW = `<span class="deco t2 w3 h2" aria-hidden="true"></span><span cla
 <button id="secret-book" class="deco t6 w4 h3 secret" type="button" aria-expanded="false" aria-controls="secret-found" aria-label="An untitled book, sitting slightly out of line"></button>
 <span class="deco t7 w2 h2" aria-hidden="true"></span><span class="deco t5 w3 h3" aria-hidden="true"></span><span class="deco t2 w2 h1" aria-hidden="true"></span><span class="deco t4 w3 h2" aria-hidden="true"></span><span class="deco t1 w2 h3 lean" aria-hidden="true"></span><span class="deco t3 w4 h2" aria-hidden="true"></span><span class="deco t6 w2 h1" aria-hidden="true"></span><span class="deco t7 w3 h3" aria-hidden="true"></span><span class="deco t5 w2 h2" aria-hidden="true"></span><span class="deco t2 w3 h1" aria-hidden="true"></span><span class="deco t1 w2 h2" aria-hidden="true"></span><span class="deco t4 w2 h3" aria-hidden="true"></span><span class="deco t3 w3 h2" aria-hidden="true"></span><span class="deco t6 w4 h1" aria-hidden="true"></span><span class="deco t7 w2 h3" aria-hidden="true"></span><span class="deco t5 w3 h2" aria-hidden="true"></span>`;
 
+const bodyCls = (issue, extra = '') => [extra, issue.bodyClass].filter(Boolean).join(' ');
+
 const PRINCIPLES = ['All', 'Recovery', 'Playfulness', 'Curiosity', 'Creativity', 'Freedom', 'Connection', 'Permission'];
 
 // ---------- pages ----------
 function entrancePage(issue, base) {
-  const art = exists('entrance.svg') ? 'entrance.svg' : exists('entrance.jpg') ? 'entrance.jpg' : 'reading-stand.jpg';
-  return head({ title: `${issue.label} · The Library · We Are Unbecoming`, description: 'An invitation to read, question, laugh and occasionally misbehave.', url: base, bodyClass: 'entrance' }) + `
+  const art = issue.entranceArt && exists(issue.entranceArt) ? issue.entranceArt : exists('entrance.svg') ? 'entrance.svg' : exists('entrance.jpg') ? 'entrance.jpg' : 'reading-stand.jpg';
+  return head({ title: `${issue.label} · The Library · We Are Unbecoming`, description: 'An invitation to read, question, laugh and occasionally misbehave.', url: base, bodyClass: bodyCls(issue, 'entrance') }) + `
 <div class="ent dark grain">
 <a class="skip" href="${base}library/">Skip to the Library</a>
 <img class="ent-art" src="${IMG}${art}" alt="" aria-hidden="true">
@@ -150,7 +152,7 @@ function entrancePage(issue, base) {
 <span class="eyebrow" style="color:#F3EADB">${esc(issue.label)} · ${esc(issue.month)}</span>
 </div>
 <h1><span class="the">The</span>Dispatch</h1>
-<p class="tag">An invitation to read, question, laugh and occasionally misbehave.</p>
+<p class="tag">${esc(issue.tagline || 'An invitation to read, question, laugh and occasionally misbehave.')}</p>
 ${issue.theme ? `<p class="theme">This month’s theme: ${esc(issue.theme)}</p>` : ''}
 <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;width:100%">
 <span class="door"><a class="btn btn-brass" href="${base}library/">Enter the Library</a><span class="gap" aria-hidden="true"></span></span>
@@ -176,13 +178,13 @@ function libraryPage(issue, base, allIssues) {
 <p class="meta">FILED UNDER: ${b.principles.join(' · ')}<br>OPEN TO: ${esc(accessLabel(b))}</p>
 <a class="open" href="${base}${b.slug}/">Open the book</a>
 </article></li>`).join('\n');
-  const past = allIssues.length > 1 ? `<section class="room grain" aria-labelledby="past-h"><div class="wrap">
+  const past = allIssues.some((i) => i.slug !== issue.slug) ? `<section class="room grain" aria-labelledby="past-h"><div class="wrap">
 <h2 id="past-h" class="room-h">Earlier Dispatches</h2>
 <p class="room-sub">Every issue stays on the shelf, bound. Pull one out and read it in one go.</p>
 <div class="past">${allIssues.slice().reverse().filter((i) => i.slug !== issue.slug).map((i) => `<div class="vol-spine"><a class="vs-book" href="/dispatch/${i.slug}/bound/"><span class="vs-no">No. ${i.number}</span><span class="vs-t">${esc(i.theme || i.month)}</span><span class="vs-m">${esc(i.month)}</span></a><a class="vs-lib" href="/dispatch/${i.slug}/library/">or wander that month’s Library</a></div>`).join('')}</div>
 </div></section>` : '';
 
-  return head({ title: `The Library · ${issue.label} · We Are Unbecoming`, description: 'Stories, opinions, confessions and curious discoveries. Please open the books.', url: `${base}library/` }) + `<div class="lib">
+  return head({ title: `The Library · ${issue.label} · We Are Unbecoming`, description: 'Stories, opinions, confessions and curious discoveries. Please open the books.', url: `${base}library/`, bodyClass: bodyCls(issue) }) + `<div class="lib">
 <a class="skip" href="#catalogue">Skip to the catalogue (list view)</a>
 ${nav(issue, base, true)}<main>
 <section class="room grain" id="letter" aria-labelledby="letter-h">
@@ -192,8 +194,9 @@ ${nav(issue, base, true)}<main>
 <span class="eyebrow muted">From the desk of the Librarian</span>
 <h2 id="letter-h" class="disp" style="margin:0;font-size:clamp(34px,3.4vw,44px);font-weight:500;line-height:1.05">${esc(lt.title)}</h2>
 </div></div>
+${lt.lead ? `<p class="principles-line">${lt.lead}</p>` : ''}
 ${lt.body.map((p) => `<p>${p}</p>`).join('\n')}
-<p class="sig">The Librarian</p>
+<p class="sig">${esc(lt.signature || 'The Librarian')}</p>
 ${lt.ps ? `<p class="ps">${esc(lt.ps)}</p>` : ''}
 ${issue.theme ? `<p class="theme-line">This month’s theme: ${esc(issue.theme)}</p>` : ''}
 ${lt.margin ? `<span class="anno anno-1" aria-hidden="true">${esc(lt.margin)}</span>` : ''}
@@ -214,7 +217,7 @@ ${issue.theme ? `<p style="margin:14px 0 0;font-size:14px;color:#5E4E3B">Theme: 
 
 <section class="band dark grain" aria-labelledby="band-h">
 <div class="wrap wrap-wide">
-<div class="band-head"><h2 id="band-h" class="eyebrow" style="margin:0;color:#F3EADB">From the Librarian’s own shelves</h2><span class="disp" style="font-size:22px;font-style:italic;color:#F3EADB">Respectable on the outside. Do look closer.</span></div>
+<div class="band-head"><h2 id="band-h" class="eyebrow" style="margin:0;color:#F3EADB">From the Librarian’s own shelves</h2><span class="disp" style="font-size:22px;font-style:italic;color:#F3EADB">${esc(issue.bandLine || 'Respectable on the outside. Do look closer.')}</span></div>
 <div class="band-row">
 <figure class="bph"><img src="${IMG}shelf-claret.jpg" alt="A row of claret, rust and black cloth spines with gilt titles, on a dark shelf" loading="lazy"></figure>
 <figure class="bph"><img src="${IMG}shelf-dickens.jpg" alt="A matching set of claret leather Dickens volumes with gilt ornaments, beside older reference books" loading="lazy"></figure>
@@ -226,8 +229,8 @@ ${issue.theme ? `<p style="margin:14px 0 0;font-size:14px;color:#5E4E3B">Theme: 
 <section class="room room-alt grain" id="shelves" aria-labelledby="shelves-h">
 <div class="wrap wrap-wide">
 <div class="shelf-head">
-<div><h2 id="shelves-h" class="room-h">The Shelves</h2><p class="room-sub">Every book has a voice. Every voice needs a reader.</p></div>
-<span class="hint" aria-hidden="true">Hover, then open. They’ve been waiting.</span>
+<div><h2 id="shelves-h" class="room-h">The Shelves</h2><p class="room-sub">${esc(issue.shelfSub || 'Every book has a voice. Every voice needs a reader.')}</p></div>
+<span class="hint" aria-hidden="true">${esc(issue.shelfHint || 'Hover, then open. They’ve been waiting.')}</span>
 </div>
 <div class="chips" role="group" aria-label="Browse by principle">
 <span class="chips-l">Browse by principle</span>
@@ -273,27 +276,27 @@ ${cat}
 </div>
 </div>
 <div class="corner">
-<span class="eyebrow muted">The Curiosity Cabinet</span>
-<div id="cabinet" class="cab"><div class="cab-in">
-<img src="${IMG}enriqueta-rylands.jpg" alt="" aria-hidden="true">
+<span class="eyebrow muted">${esc(issue.cabinet.label || 'The Curiosity Cabinet')}</span>
+<div id="cabinet" class="cab"><div class="cab-in${issue.cabinet.imageClass ? ' ' + issue.cabinet.imageClass : ''}">
+<img src="${IMG}${issue.cabinet.image || 'enriqueta-rylands.jpg'}" alt="" aria-hidden="true">
 <span class="cdoor cdoor-l" aria-hidden="true"></span><span class="cdoor cdoor-r" aria-hidden="true"></span>
 </div></div>
 <p class="type" style="margin:0;font-size:15px;line-height:1.6"><b style="letter-spacing:.08em">${esc(issue.cabinet.teaserTitle.toUpperCase())}</b><br>${esc(issue.cabinet.teaser)}</p>
 <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
 <a class="btn btn-line" href="${base}${issue.cabinet.slug}/">Open the cabinet</a>
-<span class="hand" style="font-size:24px;color:#8B2E2A">For the Correspondents. Only if you want to know more. — L.</span>
+<span class="hand" style="font-size:24px;color:#8B2E2A">${esc(issue.cabinet.note || 'For the Correspondents. Only if you want to know more.')} — L.</span>
 </div>
 </div>
 <div class="slot">
 <span class="eyebrow muted">The Return Slot</span>
 <div class="letterbox" aria-hidden="true"><i></i></div>
-<p style="margin:0;font-size:19px;line-height:1.5">Read something that made you laugh in a quiet carriage, or cross enough to write in? Post it back. The Librarian reads everything, eventually.</p>
+<p style="margin:0;font-size:19px;line-height:1.5">${esc(issue.returnSlot || 'Read something that made you laugh in a quiet carriage, or cross enough to write in? Post it back. The Librarian reads everything, eventually.')}</p>
 <div><a class="btn btn-line" href="${tokens.returnHref}">Post a reply</a></div>
 </div>
 </div>
 </div>
 </section>
-
+${lastPage(issue)}
 <section class="room grain" id="ways" aria-labelledby="ways-h">
 <div class="wrap">
 <h2 id="ways-h" class="room-h">Ways in</h2>
@@ -316,14 +319,15 @@ ${cat}
 <span class="eyebrow" style="color:#F3EADB">On the Society’s own site</span>
 <h3>The Room</h3>
 <p class="line">The Company gathers behind closed doors.</p>
-<div class="door-row"><b>The Company</b><span class="price">£79 a month</span></div>
+<div class="door-row"><b>The Company</b><span class="price">${esc((issue.company && issue.company.price) || '£79 a month')}</span></div>
+${issue.company && issue.company.note ? `<p class="founding">${esc(issue.company.note)}</p>` : ''}
 <ul class="inc">
 <li>Everything the Correspondents receive</li>
 <li>The monthly Almanac theme and the Be Musings</li>
 <li>The Parlour, a private circle</li>
 <li>Invitations to The Salon and The Assembly, the occasional Coterie, and first go at the Experiments</li>
 </ul>
-<div style="margin-top:8px"><a class="btn btn-brass" href="${L.company}">Knock on the door</a></div>
+<div style="margin-top:8px"><a class="btn btn-brass" href="${(issue.company && issue.company.href) || L.company}">Knock on the door</a></div>
 </div>
 </div>
 </div>
@@ -331,6 +335,35 @@ ${cat}
 ${past}
 </main>
 ${footer(base)}`;
+}
+
+// ---------- the Last Page (optional): the question to carry, and a final word ----------
+function lastPage(issue, bound = false) {
+  const lp = issue.lastPage;
+  if (!lp) return '';
+  const fw = lp.finalWord || {};
+  return `<section class="${bound ? 'vol-book' : 'room grain'}" id="last" aria-labelledby="last-h">
+<div class="wrap">
+<h2 id="last-h" class="room-h">The Last Page</h2>
+${lp.sub ? `<p class="room-sub">${esc(lp.sub)}</p>` : ''}
+<div class="carry">
+<span class="eyebrow muted">The question to carry</span>
+<p class="carry-q">${esc(lp.question)}</p>
+${(lp.lines || []).map((x) => `<p class="carry-s">${x}</p>`).join('\n')}
+${lp.aside ? `<p class="hand" style="margin:0;color:#8B2E2A;font-size:34px;transform:rotate(-2deg)">${esc(lp.aside)}</p>` : ''}
+${lp.small ? `<p class="carry-small">${esc(lp.small)}</p>` : ''}
+</div>
+${fw.body ? `<article class="paper grain final" aria-labelledby="fw-h">
+<div class="letterhead"><div style="display:flex;flex-direction:column;gap:6px">
+<span class="eyebrow muted">A final word</span>
+<h3 id="fw-h" class="disp" style="margin:0;font-size:clamp(34px,3.4vw,44px);font-weight:500;line-height:1.05">${esc(fw.title || '')}</h3>
+</div></div>
+${fw.body.map((x) => `<p>${x}</p>`).join('\n')}
+<p class="sig">${esc(fw.signature || 'The Librarian')}</p>
+${lp.next ? `<p class="ps next">${lp.next}</p>` : ''}
+</article>` : ''}
+</div>
+</section>`;
 }
 
 function bookBody(issue, base, b, mode, to) {
@@ -377,7 +410,7 @@ ${level === 'correspondents'
     .concat(issue.books.map((b) => `<li><a href="#${b.slug}"><span class="n">${esc(b.call)}</span><span>${esc(b.column)}: <i>${esc(b.title)}</i>${modeFor(b) === 'preview' ? ' <em class="vol-op">(opening)</em>' : ''}</span></a></li>`))
     .concat(cabinet ? [`<li><a href="#the-curiosity-cabinet"><span class="n">·</span><span>The Curiosity Cabinet: <i>${esc(c.teaserTitle)}</i>${level === 'correspondents' ? '' : ' <em class="vol-op">(for the Correspondents)</em>'}</span></a></li>`] : [])
     .join('\n');
-  return head({ title: `${issue.label} · The bound edition · We Are Unbecoming`, description: `The whole of ${issue.label}, to read in one go.`, url: to, bodyClass: 'vol-body' }) + `${nav(issue, base, false)}
+  return head({ title: `${issue.label} · The bound edition · We Are Unbecoming`, description: `The whole of ${issue.label}, to read in one go.`, url: to, bodyClass: bodyCls(issue, 'vol-body') }) + `${nav(issue, base, false)}
 <main class="vol" id="read">
 <section class="vol-cover dark grain">
 <div class="wrap">
@@ -406,6 +439,7 @@ ${lt.ps ? `<p><i>${esc(lt.ps)}</i></p>` : ''}
 </section>
 ${books}
 ${cabinet}
+${lastPage(issue, true)}
 <section class="vol-book vol-end" aria-label="The Margins">
 <div class="wrap" style="max-width:640px">
 <span class="eyebrow muted">The Margins</span>
@@ -473,7 +507,7 @@ ${endBlock}
 </div></div>`}
 </main>
 <div style="height:64px"></div>`;
-  return head({ title: `${b.title} · ${b.column} · We Are Unbecoming`, description: b.dek, url: `${base}${b.slug}/`, image: b.image ? b.image.src : undefined }) + `<div class="art">
+  return head({ title: `${b.title} · ${b.column} · We Are Unbecoming`, description: b.dek, url: `${base}${b.slug}/`, image: b.image ? b.image.src : undefined, bodyClass: bodyCls(issue) }) + `<div class="art">
 <a class="skip" href="#read">Skip to the ${isLex ? 'word' : 'text'}</a>
 ${nav(issue, base, false)}${header}
 ${main}
@@ -517,7 +551,7 @@ function cabinetPage(issue, base, mode) {
 ${fill(fs.readFileSync(path.join(ROOT, 'content/issues', issue.slug, c.file), 'utf8'))}
 </article>`
     : `<div class="arow"><div><p class="type" style="font-size:16px;line-height:1.6"><b style="letter-spacing:.08em">${esc(c.teaserTitle.toUpperCase())}</b><br>${esc(c.teaser)}</p>${gateBlock(`${base}${c.slug}/`)}</div></div>`;
-  return head({ title: `The Curiosity Cabinet · ${issue.label} · We Are Unbecoming`, description: c.teaser, url: `${base}${c.slug}/` }) + `<div class="art">
+  return head({ title: `The Curiosity Cabinet · ${issue.label} · We Are Unbecoming`, description: c.teaser, url: `${base}${c.slug}/`, bodyClass: bodyCls(issue) }) + `<div class="art">
 <a class="skip" href="#read">Skip to the case file</a>
 ${nav(issue, base, false)}
 <div class="wrap backbar"><a class="back" href="${base}library/#corners"><span aria-hidden="true">←</span> Back to the Library</a><span class="type nav-issue2" style="font-size:13px">${esc(issue.label)} · The Curiosity Cabinet</span></div>
@@ -578,12 +612,15 @@ fs.copyFileSync(path.join(ROOT, 'src/js/site.js'), path.join(OUT, 'assets/site.j
 
 const issues = fs.readdirSync(path.join(ROOT, 'content/issues')).sort()
   .map((d) => JSON.parse(fs.readFileSync(path.join(ROOT, 'content/issues', d, 'issue.json'), 'utf8')));
-const latest = issues[issues.length - 1];
+// An issue marked "draft": true is built at its own address for checking, but stays off the front door
+// and off the earlier-Dispatches shelf until the flag is removed.
+const published = issues.filter((i) => !i.draft);
+const latest = published[published.length - 1];
 
 for (const issue of issues) {
   const base = `/dispatch/${issue.slug}/`;
   write(`dispatch/${issue.slug}/index.html`, entrancePage(issue, base));
-  write(`dispatch/${issue.slug}/library/index.html`, libraryPage(issue, base, issues));
+  write(`dispatch/${issue.slug}/library/index.html`, libraryPage(issue, base, published));
   for (const b of issue.books) {
     const to = `${base}${b.slug}/`;
     write(`dispatch/${issue.slug}/${b.slug}/index.html`, doorPage(issue, base, { to, need: 'curious', title: b.title, what: b.column }));
@@ -607,4 +644,5 @@ fs.writeFileSync(path.join(ROOT, 'netlify/vault/pages.js'), `// Generated by bui
 write('_redirects', `/            /dispatch/${latest.slug}/          302\n/library     /dispatch/${latest.slug}/library/  302\n`);
 write('index.html', `<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/dispatch/${latest.slug}/"><link rel="canonical" href="/dispatch/${latest.slug}/"><title>The Library · We Are Unbecoming</title><a href="/dispatch/${latest.slug}/">Enter the Library</a>`);
 write('robots.txt', site.softLaunch ? 'User-agent: *\nDisallow: /\n' : 'User-agent: *\nAllow: /\n');
-console.log(`Built ${issues.length} issue(s); latest ${latest.label}.`);
+const drafts = issues.filter((i) => i.draft).map((i) => i.label);
+console.log(`Built ${issues.length} issue(s); latest ${latest.label}.${drafts.length ? ` Drafts (not on the front door): ${drafts.join(', ')}.` : ''}`);
