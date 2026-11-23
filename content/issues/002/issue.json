@@ -356,5 +356,10 @@
       ],
       "freeOpening": false
     }
-  ]
+  ],
+  "deskImage": {
+    "src": "we-are-unbecoming-sampler.jpg",
+    "alt": "A cross-stitch sampler in an embroidery hoop: We Are Unbecoming in dark green script, framed by sprays of green roses and leaves",
+    "caption": "Stitched by the Librarian’s friend in the village."
+  }
 }

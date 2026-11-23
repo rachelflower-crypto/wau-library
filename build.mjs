@@ -202,7 +202,7 @@ ${issue.theme ? `<p class="theme-line">This month’s theme: ${esc(issue.theme)}
 ${lt.margin ? `<span class="anno anno-1" aria-hidden="true">${esc(lt.margin)}</span>` : ''}
 </article>
 <aside style="display:flex;flex-direction:column;gap:36px;padding-top:12px" aria-label="In this Dispatch">
-<img class="desk-art" src="${IMG}desk.svg" alt="On the desk: the Librarian’s spectacles, a brass key and her red fountain pen">
+${issue.deskImage ? `<figure class="desk-photo"><img src="${IMG}${issue.deskImage.src}" alt="${esc(issue.deskImage.alt)}"><figcaption class="hand">${esc(issue.deskImage.caption)}</figcaption></figure>` : `<img class="desk-art" src="${IMG}desk.svg" alt="On the desk: the Librarian’s spectacles, a brass key and her red fountain pen">`}
 <div class="cardcat">
 <h3>In this Dispatch · No. ${issue.number}</h3>
 <ol>

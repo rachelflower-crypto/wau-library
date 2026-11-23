@@ -641,3 +641,9 @@ h2.room-h{margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-s
 .poem-body p{margin:0 0 18px!important;font-family:'Cormorant Garamond',serif;font-size:21px!important;line-height:1.45!important;color:#2A211D}
 .poem figcaption{font-size:28px;color:#8B2E2A;text-align:right;margin-top:4px}
 @media (max-width:600px){.poem{padding:24px 22px 20px;transform:none}}
+
+
+/* a photograph on the Librarian's desk (optional, per issue) */
+.desk-photo{margin:0;align-self:center;max-width:380px;background:#F9F4EA;padding:12px 12px 8px;border:1px solid #B07D3E;box-shadow:0 18px 30px -20px rgba(42,33,29,.7);transform:rotate(1.5deg)}
+.desk-photo img{display:block;width:100%;height:auto}
+.desk-photo figcaption{margin-top:6px;font-size:24px;line-height:1.1;color:#8B2E2A;text-align:center}
