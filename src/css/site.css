@@ -633,3 +633,11 @@ h2.room-h{margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-s
 .paper.final{max-width:760px;margin:0 auto;transform:rotate(-.3deg)}
 .final .next{border-top:1px dashed #836E57;padding-top:14px;margin-top:20px}
 .founding{margin:-4px 0 6px;font-size:15px;font-style:italic;color:#E3C68A}
+
+
+/* No. 2 · a poem from the Librarian's notebook */
+.poem{margin:6px 0 36px;padding:30px 34px 26px;background:#F9F4EA;border:1px solid #B07D3E;box-shadow:0 18px 30px -22px rgba(42,33,29,.7);max-width:520px;transform:rotate(-.6deg)}
+.poem h3{margin:8px 0 18px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(28px,2.6vw,34px);line-height:1.1;color:#2A211D}
+.poem-body p{margin:0 0 18px!important;font-family:'Cormorant Garamond',serif;font-size:21px!important;line-height:1.45!important;color:#2A211D}
+.poem figcaption{font-size:28px;color:#8B2E2A;text-align:right;margin-top:4px}
+@media (max-width:600px){.poem{padding:24px 22px 20px;transform:none}}
